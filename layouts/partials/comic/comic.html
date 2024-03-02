@@ -1,0 +1,31 @@
+{{$page := partial "comic/get-comic-page.html" .}}
+{{$firstPageOfChapterURL := absURL (printf "comic/%s/1/" $page.chapter)}}
+{{$comicImg := $page.comicImgRaw.Resize (printf "%dx %s" site.Params.comicResizeWidth site.Params.imgFormat)}}
+
+{{$comics := partial "comic/get-all-comics.html"}}
+{{$currPageIndex := partial "utils/indexof.html" (dict "array" $comics.comicPages "targetElem" .)}}
+{{$isLastPage := eq $currPageIndex 0}}
+{{$nextPage := index $comics.comicPages (sub $currPageIndex 1)}}
+
+{{if $isLastPage}}
+
+    {{partial "comic/nav.html" .}}
+    <img id="comic-img" class="img-fluid" src="{{$comicImg.Permalink}}" alt="{{$page.alt}}"
+        {{with $page.hover}}title="{{.}}"{{end}} width="{{$comicImg.Width}}" height="{{$comicImg.Height}}"/>
+    {{partial "comic/nav.html" .}}
+
+{{else}}
+
+    {{partial "comic/nav.html" .}}
+    <a href="{{$nextPage.Permalink}}"><img id="comic-img" class="img-fluid" src="{{$comicImg.Permalink}}" alt="{{$page.alt}}"
+        {{with $page.hover}}title="{{.}}"{{end}} width="{{$comicImg.Width}}" height="{{$comicImg.Height}}"/></a>
+    {{partial "comic/nav.html" .}}
+
+{{end}}
+
+
+
+<p>
+    <span id="publish-date"><i>{{$page.dateStr}}</i><br/></span>
+</p>
+<div id="transcript">{{.Content}}</div>

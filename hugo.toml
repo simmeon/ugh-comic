@@ -1,0 +1,33 @@
+baseURL = 'https://simmeon.github.io/'
+languageCode = 'en-us'
+title = 'UGH! - The Unlikely Guild of Heroes'
+
+[params]
+description = 'A minimal webcomic template built with Bootstrap and Hugo.'
+dateFormat = 'Jan 2, 2006'
+comicResizeWidth = 1280
+comicThumbResizeWidth = 300
+imgFormat = 'png'
+[params.author]
+name = 'simmeon'
+
+[taxonomies]
+
+[[menu.main]]
+name = 'Home'
+pageRef = '/'
+weight = 1
+
+[[menu.main]]
+name = 'About'
+pageRef = '/about'
+weight = 2
+
+[[menu.main]]
+name = 'Archive'
+pageRef = '/archive'
+weight = 3
+
+[imaging]
+resampleFilter = 'Lanczos'
+quality = 75
